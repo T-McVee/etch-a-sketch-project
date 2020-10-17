@@ -12,15 +12,16 @@ function initBoard(num) {
   for (let i = 1; i <= num; i++) {
     const cell = document.createElement('div');
     cell.classList.add('cell');
+    cell.style.backgroundColor = "rgb(246, 251, 255)";
     cell.id = `cell${i}`;
-    cell.addEventListener('mouseover', lightUpRandom);
+    cell.addEventListener('mouseover', lightUpIncrease);
     app.appendChild(cell);
   }
 }
 
 // Colour cell on mouse touch
 function lightUp(e) {
-  e.target.classList.add('hovered');
+  e.target.style.backgroundColor = "rgb(256, 120, 176)";
 }
 
 // Random color on mouse touch
@@ -29,8 +30,26 @@ function lightUpRandom(e) {
   let green = 120;
   let blue = 176;
 
-  e.target.style.background = `rgb(${red}, ${green}, ${blue})`;
+  e.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
 }
+
+// Increase color intensity on each pass
+function lightUpIncrease(e) {
+  let green = 120;
+  let blue = 176;
+  let currentColor = e.target.style.backgroundColor;
+
+  if (currentColor == 'rgb(246, 251, 255)') {
+    lightUp(e);
+  } else {
+    let currentRed = parseInt(currentColor.slice(4, 7));
+    let newRed = Math.round(currentRed * 0.9);
+
+    e.target.style.backgroundColor = `rgb(${newRed}, ${green}, ${blue})`;
+  }
+}
+
+
 
 function newGame() {
   clearBoard();

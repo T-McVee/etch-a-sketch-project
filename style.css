@@ -55,15 +55,11 @@ button:hover {
 .cell {
   width: 20px;
   height: 20px;
-  background: rgb(246, 251, 255);
+  background-color: rgb(246, 251, 255);
   transition: all 0.1s;
   border-radius: 12px;
 }
 
 .cell:hover {
   transform: scale(1.12);
-}
-
-.hovered {
-  background:rgb(51, 120, 176);
 }
