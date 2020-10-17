@@ -14,41 +14,31 @@ function initBoard(num) {
     cell.classList.add('cell');
     cell.style.backgroundColor = "rgb(246, 251, 255)";
     cell.id = `cell${i}`;
-    cell.addEventListener('mouseover', lightUpIncrease);
+    cell.addEventListener('mouseover', lightUp);
     app.appendChild(cell);
   }
 }
 
 // Colour cell on mouse touch
 function lightUp(e) {
-  e.target.style.backgroundColor = "rgb(256, 120, 176)";
+  const red = lightUpShade(e)
+  const green = 120;
+  const blue = 176;
+  e.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue}`;
 }
 
 // Random color on mouse touch
 function lightUpRandom(e) {
-  let red = ((Math.random() * 256) + 1);
-  let green = 120;
-  let blue = 176;
-
-  e.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+  return ((Math.random() * 256) + 1);
 }
 
-// Increase color intensity on each pass
-function lightUpIncrease(e) {
-  let green = 120;
-  let blue = 176;
+// Increase color intensity on each touch
+function lightUpShade(e) {
   let currentColor = e.target.style.backgroundColor;
 
-  if (currentColor == 'rgb(246, 251, 255)') {
-    lightUp(e);
-  } else {
-    let currentRed = parseInt(currentColor.slice(4, 7));
-    let newRed = Math.round(currentRed * 0.9);
-
-    e.target.style.backgroundColor = `rgb(${newRed}, ${green}, ${blue})`;
-  }
+  return currentColor == 'rgb(246, 251, 255)' ? "256"
+    : Math.round(parseInt(currentColor.slice(4, 7)) * 0.9);
 }
-
 
 
 function newGame() {
