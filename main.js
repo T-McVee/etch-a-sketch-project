@@ -1,6 +1,9 @@
 // HTML elements
 const app = document.querySelector('#app');
 const resetBtn = document.querySelector('#reset');
+const rainbowBtn = document.querySelector('#rainbow');
+const shadingBtn = document.querySelector('#shading');
+
 
 
 //create 16 div elements
@@ -12,7 +15,7 @@ function initBoard(num) {
   for (let i = 1; i <= num; i++) {
     const cell = document.createElement('div');
     cell.classList.add('cell');
-    cell.style.backgroundColor = "rgb(246, 251, 255)";
+    cell.style.backgroundColor = "rgb(220, 238, 255)";
     cell.id = `cell${i}`;
     cell.addEventListener('mouseover', lightUp);
     app.appendChild(cell);
@@ -36,14 +39,26 @@ function lightUpRandom(e) {
 function lightUpShade(e) {
   let currentColor = e.target.style.backgroundColor;
 
-  return currentColor == 'rgb(246, 251, 255)' ? "256"
+  return currentColor == 'rgb(220, 238, 255)' ? "256"
     : Math.round(parseInt(currentColor.slice(4, 7)) * 0.9);
+}
+
+function rainbow() {
+  // Enable rainbow mode
+  rainbowBtn.classList.add('selected');
+  shadingBtn.classList.remove('selected');
+}
+
+function shading() {
+  // Enable shading mode
+  rainbowBtn.classList.remove('selected');
+  shadingBtn.classList.add('selected');
 }
 
 
 function newGame() {
-  clearBoard();
   let gridSize = getInput();
+  clearBoard();
   initBoard(gridSize);
 };
 

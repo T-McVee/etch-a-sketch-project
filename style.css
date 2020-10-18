@@ -39,7 +39,15 @@ button:hover {
   transform: scale(1.05);
 }
 
+button.selected {
+  background: rgb(155, 51, 176);
+  color: rgb(246, 251, 255);
+}
+
 .app {
+  background: rgb(220, 238, 255);
+  padding: 2em 4.5em ;
+  border-radius: 18px;
   display: grid;
   gap: 0px 0px;
   
@@ -55,7 +63,7 @@ button:hover {
 .cell {
   width: 20px;
   height: 20px;
-  background-color: rgb(246, 251, 255);
+  background-color: rgb(220, 238, 255);
   transition: all 0.1s;
   border-radius: 12px;
 }
